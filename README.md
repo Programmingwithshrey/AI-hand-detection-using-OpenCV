@@ -1,2 +1,2 @@
 # AI-hand-detection-using-OpenCV
-AI detects the position of hands and how it is positioned for user
+Ever wanted to use python for Hand detection AI? Position of all your fingers all through one program

@@ -3,7 +3,6 @@ import keyboard as kb
 import mediapipe as mp
 
 video = cv2.VideoCapture(0)
-video.set(cv2.CAP_PROP_FRAME_WIDTH, -1)
 
 hand = mp.solutions.hands
 Hand_insta = hand.Hands(max_num_hands=1, min_detection_confidence=0.6, min_tracking_confidence = 0.4)

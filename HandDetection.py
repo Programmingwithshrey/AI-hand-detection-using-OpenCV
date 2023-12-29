@@ -3,9 +3,10 @@ import keyboard as kb
 import mediapipe as mp
 
 video = cv2.VideoCapture(0)
+video.set(cv2.CAP_PROP_FRAME_WIDTH, -1)
 
 hand = mp.solutions.hands
-Hand_insta = hand.Hands()
+Hand_insta = hand.Hands(max_num_hands=1, min_detection_confidence=0.6, min_tracking_confidence = 0.4)
 drawLandmarks = mp.solutions.drawing_utils.draw_landmarks
 
 while True:
@@ -14,6 +15,7 @@ while True:
         print("cam aint responding - maybe its closed? or disabled access (check settings ofc)")
         break
 
+    frame = cv2.flip(frame, 1)
     frame = frame[:, :, ::-1]
 
     HandFramePosition = Hand_insta.process(frame)
@@ -24,6 +26,6 @@ while True:
             drawLandmarks(frame, landmarks, hand.HAND_CONNECTIONS) # Hand_Connectionos makrs the points on the hand and connects them together. This is pretty cool
     cv2.imshow("Yoooo hand detection bro", frame)
 
-    if cv2.waitKey(1) and kb.is_pressed("X"):
+    if cv2.waitKey(1) and kb.is_pressed("x"):
         break
 cv2.destroyAllWindows()
